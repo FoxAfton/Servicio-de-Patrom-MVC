@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /** Todo lo que el usuario ve o teclea. No decide nada ni conoce las reglas del negocio. */
-public class VistaConsola {
+public class VistaConsola implements Vista {
     private final Scanner sc = new Scanner(System.in);
 
     // ---- Entrada: devuelve texto crudo, el controlador lo interpreta ----

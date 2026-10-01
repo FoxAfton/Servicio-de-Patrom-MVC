@@ -4,14 +4,14 @@ import modelo.DatosInvalidosException;
 import modelo.Inventario;
 import modelo.ProductoNoEncontradoException;
 import modelo.StockInsuficienteException;
-import vista.VistaConsola;
+import vista.Vista;
 
 /** Interpreta la entrada, invoca al modelo y le dice a la vista qué mostrar. */
 public class ControladorInventario {
     private final Inventario inventario;
-    private final VistaConsola vista;
+    private final Vista vista;
 
-    public ControladorInventario(Inventario inventario, VistaConsola vista) {
+    public ControladorInventario(Inventario inventario, Vista vista) {
         this.inventario = inventario;
         this.vista = vista;
     }

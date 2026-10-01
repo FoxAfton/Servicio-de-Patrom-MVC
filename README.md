@@ -41,3 +41,10 @@ javac -d out src/modelo/*.java
 javac -cp out:junit-4.x.jar:hamcrest-core.jar -d out test/modelo/InventarioTest.java
 java  -cp out:junit-4.x.jar:hamcrest-core.jar org.junit.runner.JUnitCore modelo.InventarioTest
 ```
+
+## Segunda vista (CSV)
+```
+java -cp out App        # vista de consola (igual que antes)
+java -cp out App csv    # la opcion 3 exporta a inventario.csv
+```
+El controlador depende de la interfaz `vista.Vista`; el paquete `modelo` no cambio.
