@@ -48,3 +48,12 @@ java -cp out App        # vista de consola (igual que antes)
 java -cp out App csv    # la opcion 3 exporta a inventario.csv
 ```
 El controlador depende de la interfaz `vista.Vista`; el paquete `modelo` no cambio.
+
+## Ejercicio 4: vistas sincronizadas (Observer)
+```
+java -cp out App sync    # consola + ventana Swing + CSV espejo, mismo modelo
+```
+- `modelo.ObservadorInventario` es la unica interfaz que el modelo conoce.
+- `Inventario` guarda observadores y los avisa tras cada `agregar` o `vender` exitoso.
+- Observadores: `VistaGrafica` (ventana), `ObservadorConsola` (aviso en consola), `ObservadorCsv` (reescribe inventario.csv).
+- Vender desde la ventana o desde el menu actualiza a las demas.

@@ -16,16 +16,16 @@ public class Producto {
     }
 
     public String getNombre() { return nombre; }
-    public int getCantidad()  { return cantidad; }
+    public synchronized int getCantidad() { return cantidad; }
     public double getPrecio() { return precio; }
 
     /** Valor en inventario de este producto (cantidad x precio). */
-    public double getValor() {
+    public synchronized double getValor() {
         return cantidad * precio;
     }
 
     /** Regla: no se puede vender más de lo que hay en stock. Devuelve lo que queda. */
-    public int vender(int unidades) throws StockInsuficienteException {
+    public synchronized int vender(int unidades) throws StockInsuficienteException {
         if (unidades > cantidad) {
             throw new StockInsuficienteException("Stock insuficiente");
         }

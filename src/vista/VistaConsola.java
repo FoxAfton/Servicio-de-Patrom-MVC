@@ -26,6 +26,7 @@ public class VistaConsola implements Vista {
     public void mostrarNoExiste()           { System.out.println("No existe"); }
     public void mostrarStockInsuficiente()  { System.out.println("Stock insuficiente"); }
     public void mostrarVentaOk(int quedan)  { System.out.println("Venta ok. Quedan " + quedan); }
+    public void mostrarNumeroInvalido()     { System.out.println("Numero invalido"); }
 
     public void mostrarListado(List<Producto> productos) {
         for (Producto p : productos) {
