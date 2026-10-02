@@ -1,10 +1,10 @@
 package modelo;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.junit.Before;
+import persistencia.ProductoDAOMemoria;
 import org.junit.Test;
 
 /**
@@ -13,11 +13,16 @@ import org.junit.Test;
  */
 public class InventarioTest {
 
-    private Inventario inv;
+    protected Inventario inv;
+
+    /** Las subclases cambian la implementacion de acceso a datos; las pruebas no cambian. */
+    protected ProductoDAO crearDAO() throws Exception {
+        return new ProductoDAOMemoria();
+    }
 
     @Before
     public void preparar() throws Exception {
-        inv = new Inventario();
+        inv = new Inventario(crearDAO());
         inv.agregar("Teclado", 5, 350.0);
     }
 
@@ -80,8 +85,8 @@ public class InventarioTest {
     }
 
     @Test
-    public void valorTotalDeInventarioVacioEsCero() {
-        assertEquals(0.0, new Inventario().valorTotal(), 0.0);
+    public void valorTotalDeInventarioVacioEsCero() throws Exception {
+        assertEquals(0.0, new Inventario(crearDAO()).valorTotal(), 0.0);
     }
 
     // Caso 9 (decision de diseno: buscar lanza excepcion)
@@ -110,6 +115,7 @@ public class InventarioTest {
         Producto p = inv.buscar("Teclado");
         assertEquals("Teclado", p.getNombre());
         assertEquals(350.0, p.getPrecio(), 0.0);
-        assertTrue(inv.listar().contains(p));
+        assertEquals(1, inv.listar().size());
+        assertEquals("Teclado", inv.listar().get(0).getNombre());
     }
 }

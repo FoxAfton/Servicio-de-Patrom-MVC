@@ -5,6 +5,7 @@ import static org.junit.Assert.assertSame;
 
 import org.junit.Before;
 import org.junit.Test;
+import persistencia.ProductoDAOMemoria;
 
 /** El modelo notifica a sus observadores sin saber quienes son (aqui, un contador de prueba). */
 public class InventarioObservadorTest {
@@ -25,7 +26,7 @@ public class InventarioObservadorTest {
 
     @Before
     public void preparar() throws Exception {
-        inv = new Inventario();
+        inv = new Inventario(new ProductoDAOMemoria());
         inv.agregar("Teclado", 5, 350.0);   // antes de registrar observadores
         a = new Contador();
         b = new Contador();
@@ -95,7 +96,7 @@ public class InventarioObservadorTest {
 
     @Test
     public void sinObservadoresTodoSigueFuncionando() throws Exception {
-        Inventario solo = new Inventario();
+        Inventario solo = new Inventario(new ProductoDAOMemoria());
         solo.agregar("X", 1, 1.0);
         assertEquals(0, solo.vender("X", 1));
     }

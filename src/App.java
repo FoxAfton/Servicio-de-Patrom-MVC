@@ -1,5 +1,7 @@
 import controlador.ControladorInventario;
 import modelo.Inventario;
+import persistencia.ProductoDAOArchivo;
+import persistencia.ProductoDAOMemoria;
 import vista.ObservadorConsola;
 import vista.ObservadorCsv;
 import vista.Vista;
@@ -18,7 +20,9 @@ import javax.swing.SwingUtilities;
 public class App {
     public static void main(String[] args) {
         String modo = args.length > 0 ? args[0] : "";
-        Inventario modelo = new Inventario();
+        // >>> UNICA LINEA A CAMBIAR PARA ALTERNAR ENTRE MEMORIA Y ARCHIVO <<<
+        Inventario modelo = new Inventario(new ProductoDAOMemoria());
+        // Inventario modelo = new Inventario(new ProductoDAOArchivo("inventario.dat"));
 
         if (modo.equals("sync")) {
             Vista consola = new VistaConsola();

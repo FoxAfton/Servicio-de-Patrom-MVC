@@ -57,3 +57,13 @@ java -cp out App sync    # consola + ventana Swing + CSV espejo, mismo modelo
 - `Inventario` guarda observadores y los avisa tras cada `agregar` o `vender` exitoso.
 - Observadores: `VistaGrafica` (ventana), `ObservadorConsola` (aviso en consola), `ObservadorCsv` (reescribe inventario.csv).
 - Vender desde la ventana o desde el menu actualiza a las demas.
+
+## Ejercicio 5/6: ProductoDAO (memoria o archivo)
+Paquete `persistencia` con `ProductoDAOMemoria` y `ProductoDAOArchivo`; el contrato `ProductoDAO` vive en `modelo`.
+Para alternar, se cambia UNA linea en `App.java`:
+```java
+Inventario modelo = new Inventario(new ProductoDAOMemoria());
+// Inventario modelo = new Inventario(new ProductoDAOArchivo("inventario.dat"));
+```
+Dependencias: `persistencia -> modelo`; el modelo no importa persistencia, vista ni controlador.
+Pruebas: `ProductoDAOContratoTest` (misma bateria para ambas) e `InventarioConArchivoTest` (todas las pruebas del inventario sobre archivo).
