@@ -21,8 +21,8 @@ public class App {
     public static void main(String[] args) {
         String modo = args.length > 0 ? args[0] : "";
         // >>> UNICA LINEA A CAMBIAR PARA ALTERNAR ENTRE MEMORIA Y ARCHIVO <<<
-        Inventario modelo = new Inventario(new ProductoDAOMemoria());
-        // Inventario modelo = new Inventario(new ProductoDAOArchivo("inventario.dat"));
+        //Inventario modelo = new Inventario(new ProductoDAOMemoria());
+         Inventario modelo = new Inventario(new ProductoDAOArchivo("inventario.dat"));
 
         if (modo.equals("sync")) {
             Vista consola = new VistaConsola();
